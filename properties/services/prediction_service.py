@@ -1,6 +1,6 @@
 # core/services/prediction_service.py
 from django.contrib.auth.models import User
-from core.models.prediction import PredictionHistory
+from properties.models.prediction import PredictionHistory
 from .ai_service import HuggingFaceClient
 
 class PredictionUseCase:
