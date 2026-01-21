@@ -14,8 +14,8 @@ from pathlib import Path
 import dj_database_url
 import os
 
-from dotenv import load_dotenv #only production
-load_dotenv() #only production
+# from dotenv import load_dotenv #only development
+# load_dotenv() #only development
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
