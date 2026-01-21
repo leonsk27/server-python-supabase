@@ -30,7 +30,10 @@ HF_API_TOKEN = os.environ.get('HF_API_TOKEN')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "server-python-supabase.onrender.com",
+    "localhost",
+]
 
 
 # Application definition
