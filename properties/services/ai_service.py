@@ -19,7 +19,7 @@ class HuggingFaceClient:
         }
 
         try:
-            response = requests.post(self.api_url, json=data, headers=headers, timeout=5)
+            response = requests.post(f"{self.api_url}/predict", json=data, headers=headers, timeout=5)
             response.raise_for_status() # Lanza error si no es 200
             
             result = response.json()
