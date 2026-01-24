@@ -6,29 +6,19 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from properties.services.prediction_service import PredictionUseCase
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
-@csrf_exempt  # Usar Token Authentication en producción real
-# @login_required # Descomentar si usas autenticación de sesión
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def predict_property(request):
     """
     Endpoint: POST /api/predict/
     """
     try:
         # 1. Parsear Request
-        data = json.loads(request.body)
-        
-        # Simulamos usuario si no hay auth configurada aún (para pruebas)
-        # user = request.user if request.user.is_authenticated else None
-        # if not user:
-        #     return JsonResponse({'error': 'Usuario no autenticado'}, status=401)
-
-        if request.user.is_authenticated:
-            user = request.user
-        else:
-            user = User.objects.first() 
-            if not user:
-                return JsonResponse({'error': 'Crea primero un superusuario en la BD para probar'}, status=400)
-
+        data = request.data
+        user = request.user
         # 2. Instanciar Servicio
         service = PredictionUseCase()
         
@@ -39,4 +29,4 @@ def predict_property(request):
         return JsonResponse(result, status=200)
 
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse({'error': str(e)}, status=500)
