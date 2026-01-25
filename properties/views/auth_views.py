@@ -5,7 +5,11 @@ from rest_framework.permissions import AllowAny
 from properties.serializers.user_slzer import UserSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 import logging
-
+logger = logging.getLogger(__name__)
+# class RegisterView(generics.CreateAPIView):
+#     queryset = User.objects.all()
+#     permission_classes = (AllowAny)
+#     serializer_class = UserSerializer
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
@@ -27,6 +31,5 @@ class RegisterView(generics.CreateAPIView):
         except Exception as e:
             logger.error(f"❌ Error crítico registrando a {username}: {str(e)}")
             raise e
-
 class MyTokenObtainPairView(TokenObtainPairView):
     permission_classes = (AllowAny)
