@@ -1,1 +1,2 @@
 from .user_slzer import UserSerializer
+from .prediction_slzer import PredictionHistorySerializer
