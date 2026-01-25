@@ -32,4 +32,4 @@ class RegisterView(generics.CreateAPIView):
             logger.error(f"❌ Error crítico registrando a {username}: {str(e)}")
             raise e
 class MyTokenObtainPairView(TokenObtainPairView):
-    permission_classes = (AllowAny)
+    permission_classes = (AllowAny,)
